@@ -1,15 +1,15 @@
 from __future__ import unicode_literals
 
-import json
 import datetime
+import json
 
-from django.db import models
-from django.db.models.fields.related import ForeignObjectRel
-from django.db.models.fields import FieldDoesNotExist
-from django.utils.encoding import is_protected_type
-from django.core.serializers.json import DjangoJSONEncoder
 from django.conf import settings
+from django.core.serializers.json import DjangoJSONEncoder
+from django.db import models
+from django.db.models.fields import FieldDoesNotExist
+from django.db.models.fields.related import ForeignObjectRel
 from django.utils import timezone
+from django.utils.encoding import is_protected_type
 
 
 def get_field_value(field, model):
@@ -134,7 +134,7 @@ def get_all_child_relations(model):
             pass
 
         model._meta._child_relations_cache = relations
-        return relations
+        return filter(lambda r: r != '+', relations)
 
 
 class ClusterableModel(models.Model):
